@@ -1,0 +1,19 @@
+# Secrets — never commit
+credentials.txt
+
+# Dependencies (matches dir or symlink)
+node_modules
+
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+
+# Generated data & exports (sensitive: raw review text, reviewer names, locations)
+outputs/
+
+# Local tool state
+.zcode/
+.hermes/
