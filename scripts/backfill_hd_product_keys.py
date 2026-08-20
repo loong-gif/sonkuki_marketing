@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# DEPRECATED: Targets deleted NocoDB table homedepot_products (mnttfzrhu6gp6s0).
+# Table removed 2026-08. Do not run — kept for historical reference.
 """Backfill homedepot_product.product_key from the HD<->SF mpn tracker so
 homedepot_product joins page_product on product_key.
 

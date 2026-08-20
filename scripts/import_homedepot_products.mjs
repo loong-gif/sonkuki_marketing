@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+// DEPRECATED: Targets deleted NocoDB table homedepot_products (mnttfzrhu6gp6s0).
+// Table removed 2026-08. Do not run — kept for historical reference.
 
 import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";

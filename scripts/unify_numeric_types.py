@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# DEPRECATED: Targets deleted NocoDB tables (removed 2026-08):
+# homedepot_products (mnttfzrhu6gp6s0), competitor_products (m0vk08vypm4jrl7),
+# competitor_sales (munzznlmfzd9d2t). Do not run — kept for historical reference.
 """Task 5: unify numeric column types (SingleLineText -> Number/Decimal).
 
 Phase 1 (cleanup): strip thousands commas, currency symbols, k-suffix; fix

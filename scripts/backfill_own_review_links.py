@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# DEPRECATED: Targets deleted NocoDB table homedepot_products (mnttfzrhu6gp6s0).
+# Table removed 2026-08. Do not run — kept for historical reference.
 """Backfill item_id + product_key onto HDV1_Customer_Reviews own rows.
 
 - item_id: from archived sonkuki_reviews_raw (matched by review_key, which is

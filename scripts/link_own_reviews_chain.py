@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# DEPRECATED: Targets deleted NocoDB tables homedepot_products (mnttfzrhu6gp6s0)
+# and competitor_products (m0vk08vypm4jrl7). Removed 2026-08. Do not run.
 """Link own reviews into the HDV1 chain + sync orphan data (audit items 1-3).
 
 Phase A: add 8 missing homedepot_product rows (from archived own reviews)

@@ -21,13 +21,13 @@ Spec: `homedepot_competitors_compare.md`. Own-vs-competitor market analysis, Per
 - Site project: `outputs/sonkuki_gsc_insights_site`
 - Snapshot GSC range: 2026-04-22 through 2026-08-08
 - Shopify ↔ Home Depot: 30/31 confirmed products resolved to live HD rows
-- Current snapshot counts: 12,389 GSC rows, 31 Shopify products, 267 HD products, 4,989 own + 2,007 competitor reviews, 378 competitor products, 78 competitor sales
+- Current snapshot counts (2026-08-20 audit): 12,389 GSC rows, 31 sonkuki_products, 9,762 reviews, 13,401 review_listing_links, 669 listings, 698 variants, 676 products, 71 brands
 - Query relevance: 2,013 queries → 1,838 VALID / 7 IRRELEVANT / 168 UNKNOWN; only VALID feeds Keyword Opportunity
-- Remaining quality warnings are competitor-only: competitor listings dedupe and competitor sales aggregate rows without stable Item IDs.
+- Schema: 14 live NocoDB tables on HDV1 analytic chain + GSC (flat ingest tables homedepot_products / competitor_products / competitor_sales removed 2026-08). See `docs/schema_architecture.md`.
 
 ## Refresh
 
-Run from `/Users/wyl/sonkuki`:
+Run from the repository root:
 
 ```bash
 # 1. Reclassify queries (re-run whenever GSC data changes)
@@ -55,23 +55,34 @@ Spec: `irrelevant_query_clean.md`. Every query in `gsc_keyword_all_time` is tagg
 - Dashboard: the snapshot attaches `relevance_status` to every GSC row; the Opportunity page and the Product SEO action panel use VALID queries only, and the Executive page keeps raw totals. QA checks for relevance are in `scripts/build_dashboard_snapshot.mjs`.
 - Tests: `tests/test_query_relevance.py` (run `python3 -m unittest discover -s tests`).
 
-## Current NocoDB table mapping
+## Current NocoDB table mapping (14 live tables)
 
-- `gsc_data_raw`: `mfbg6s0mv9l74ky`
-- `gsc_keyword_all_time`: `muav8zitnoqlauu` (query dimension; carries the relevance classification columns `query`, `normalized_query`, `relevance_status`, `exclusion_reason`)
+**HDV1 analytic chain**
+
+- `reviews`: `mnz1y5x5kydob4f`
+- `review_listing_links`: `m040fohool0kx56`
+- `product_listings`: `m7xynlp62mphmlv`
+- `product_variants`: `m1br71dforlpotk`
+- `products`: `m2w1cuciam30ltz`
+- `brands`: `m7ue920zwzocr6t`
+- `listing_snapshots`: `mq2abnm4fqtz1f5`
+
+**Catalog**
+
+- `sonkuki_products`: `ma3331finostkis`
+
+**GSC**
+
+- `gsc_raw`: `mfbg6s0mv9l74ky`
+- `gsc_keyword_all_time`: `muav8zitnoqlauu` (query dimension; carries `query`, `normalized_query`, `relevance_status`, `exclusion_reason`)
+- `gsc_page_all_time`: `m0fl1tcxyopz1s3`
 - `gsc_keyword_month`: `m0e006r2m3d1wg5`
 - `gsc_keyword_improved`: `m1eh0kd0ryxeptu`
 - `gsc_keyword_newly_ranked`: `mj3l8mejz31n8ry`
-- `page_product`: `ma3331finostkis`
-- `homedepot_product`: `mnttfzrhu6gp6s0`
-- `HDV1_Customer_Reviews`: `mnz1y5x5kydob4f`
-- `HDV1_Review_Listing_Links`: `m040fohool0kx56`
-- `HDV1_Channel_Listings`: `m7xynlp62mphmlv`
-- `HDV1_Product_Variants`: `m1br71dforlpotk`
-- `competitor_product`: `m0vk08vypm4jrl7`
-- `competitor_product_sale`: `munzznlmfzd9d2t`
 
-If NocoDB table IDs change again, inspect `/api/v1/db/meta/projects/{base_id}/tables` and update `scripts/build_dashboard_snapshot.mjs` before refreshing. Confirm page/query relation fields are normalized (`page.page_url`, `query.分组键`) and preserve impression-weighted position calculations.
+**Removed 2026-08 (do not reference):** `homedepot_products` (`mnttfzrhu6gp6s0`), `competitor_products` (`m0vk08vypm4jrl7`), `competitor_sales` (`munzznlmfzd9d2t`), `raw_listing_snapshots` (`mzi7pcyvcg0865m`), `ingestion_runs`, `source_registry`.
+
+If NocoDB table IDs change again, inspect `/api/v1/db/meta/projects/{base_id}/tables` and update `scripts/build_dashboard_snapshot.mjs` (and `scripts/orphan_audit.py` TABLE constants) before refreshing. Confirm page/query relation fields are normalized (`page.page_url`, `query.分组键`) and preserve impression-weighted position calculations.
 
 ## Publish
 

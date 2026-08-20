@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# DEPRECATED: References deleted ingest tables (removed 2026-08):
+# homedepot_products, competitor_products, competitor_sales, raw_listing_snapshots.
+# Do not run — kept for historical reference.
 """Scan SingleLineText columns for numeric content (read-only)."""
 import json
 import re

@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# DEPRECATED: Targets deleted NocoDB tables (removed 2026-08):
+# homedepot_products (mnttfzrhu6gp6s0), competitor_products (m0vk08vypm4jrl7),
+# competitor_sales (munzznlmfzd9d2t). Do not run — kept for historical reference.
 """Chunked column-type conversion with server health checks.
 
 NocoDB on this Windows host restarts its worker after a few meta PATCHes and

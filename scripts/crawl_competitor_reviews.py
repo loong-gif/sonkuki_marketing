@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# DEPRECATED: Targets deleted NocoDB table competitor_products (m0vk08vypm4jrl7).
+# Table removed 2026-08. Do not run — kept for historical reference.
 """Batch crawl Home Depot reviews for competitor_product items via Apify actor.
 
 Usage:

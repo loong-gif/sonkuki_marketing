@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# DEPRECATED: References deleted ingest tables (removed 2026-08):
+# homedepot_products, competitor_products, competitor_sales.
+# Do not run — kept for historical reference.
 """Fresh redundancy audit (post-consolidation). Read-only."""
 import json
 import re

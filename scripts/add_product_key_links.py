@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# DEPRECATED: Targets deleted NocoDB table homedepot_products (mnttfzrhu6gp6s0).
+# Table removed 2026-08. Do not run — kept for historical reference.
 """Task 6 (F7): add normalized product_key to page_product + homedepot_product.
 
 product_key = "PRODUCT:SONKUKI:" + <normalized mpn> (upper, trimmed).
